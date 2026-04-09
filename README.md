@@ -13,10 +13,10 @@ A data-driven pricing and discount optimization strategy was proposed to improve
 ## 📸 Dashboard Preview
 
 ### 🔹 Page 1: Sales & Profit Overview
-![Dashboard Page 1](images/page1.png)
+![image_alt](https://github.com/nikhilp236/-Sales-Profit-Intelligence-Dashboard-with-Discount-Optimization/blob/main/sales%20and%20discount(1).png)
 
 ### 🔹 Page 2: Loss Analysis & Recommendations
-![Dashboard Page 2](images/page2.png)
+![image_alt](https://github.com/nikhilp236/-Sales-Profit-Intelligence-Dashboard-with-Discount-Optimization/blob/main/sales%20and%20discount(2).png)
 
 ## 📊 Key Metrics
 
