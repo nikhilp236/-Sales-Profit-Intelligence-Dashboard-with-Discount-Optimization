@@ -1,92 +1,72 @@
-# 📊 Sales & Profit Intelligence Dashboard with Discount Optimization
+# Sales & Profit Intelligence Dashboard
 
-Profit Intelligence Dashboard analyzing 500K+ transactions to identify loss drivers and optimize discount strategy. Revealed 33% loss due to unstructured discounting and proposed pricing solutions to improve margins and profitability.
+A Power BI + SQL + Python project that digs into 500K+ retail transactions to answer a question that should worry any business: *why are we selling more but keeping less?*
 
-## 🚀 Project Overview
+The short version — nearly a third of all transactions were losing money, and the culprit was discounting with no strategy behind it. This project traces that leak back to specific products and time periods, then lays out a pricing fix that could cut losses from ~33% to under 15%.
 
-This project delivers an end-to-end business intelligence solution to analyze sales performance, identify loss drivers, and optimize pricing strategies.
+## Why I built this
 
-The analysis revealed that unstructured discounting significantly reduces profit margins without increasing demand, leading to a high percentage of loss-making transactions.
+Most "sales dashboard" projects stop at showing numbers go up or down. I wanted to build something closer to what an actual analyst gets asked to do: take a messy 500K-row dataset, find out *why* profit wasn't matching revenue, and hand back a recommendation someone could actually act on — not just a chart.
 
-A data-driven pricing and discount optimization strategy was proposed to improve business performance.
+## The problem
 
-## 📸 Dashboard Preview
+The business looked healthy on the surface — strong revenue, steady sales volume. But profit margins were sitting at around 5%, and roughly a third of transactions were actually losing money. Digging in, the pattern wasn't random: it traced back to discounts that weren't tied to demand at all. High-selling products were getting discounted just as heavily as slow-moving ones, which meant the company was giving away margin on items that would have sold anyway.
 
-### 🔹 Page 1: Sales & Profit Overview
-![image_alt](https://github.com/nikhilp236/-Sales-Profit-Intelligence-Dashboard-with-Discount-Optimization/blob/main/sales%20and%20discount(1).png)
+## How I approached it
 
-### 🔹 Page 2: Loss Analysis & Recommendations
-![image_alt](https://github.com/nikhilp236/-Sales-Profit-Intelligence-Dashboard-with-Discount-Optimization/blob/main/sales%20and%20discount(2).png)
+1. **Extracted and queried the raw data in SQL** — joins, CTEs, and window functions to pull sales, discount, and product-level detail out of 500K+ transaction records.
+2. **Cleaned and engineered features in Python** (Pandas, NumPy) — handling inconsistent product categories, calculating per-transaction margin, and flagging loss-making rows.
+3. **Built the dashboard in Power BI** — two pages, one for the overall sales/profit picture and one purpose-built for loss analysis, with drill-down by product and time period.
+4. **Turned the patterns into pricing recommendations** rather than just leaving the findings as charts.
 
-## 📊 Key Metrics
+## What the data showed
 
-- Total Sales: 7.5M+
-- Total Profit: 444K+
-- Average Profit Margin: ~5%
-- Loss Percentage: ~33%
-- Dataset Size: 500K+ records
+- Sales peak from September to November, but profit doesn't scale with that peak — discounting eats the seasonal gain.
+- Profit margin holds around 5% overall, well below what the revenue numbers would suggest.
+- Beyond a certain discount threshold, deeper discounts stopped driving more volume — the company was just giving away margin for free.
+- A handful of high-sales products were consistently low- or negative-margin — these accounted for a disproportionate share of the total loss.
 
-## ❗ Problem Statement
+## Dashboard
 
-The business is generating high revenue but struggling with low profitability due to excessive discounting.
+**Sales & Profit Overview**
+![Sales and profit overview page](https://github.com/nikhilp236/-Sales-Profit-Intelligence-Dashboard-with-Discount-Optimization/blob/main/sales%20and%20discount(1).png)
 
-Key challenges identified:
-- High percentage of loss-making transactions (~33%)
-- Low profit margins despite strong sales
-- Inefficient discount strategy not aligned with demand
+**Loss Analysis & Recommendations**
+![Loss analysis and recommendations page](https://github.com/nikhilp236/-Sales-Profit-Intelligence-Dashboard-with-Discount-Optimization/blob/main/sales%20and%20discount(2).png)
 
-## 📈 Key Insights
+Both pages support filtering and drill-down by product and time period, so the numbers aren't just a snapshot — you can trace a loss back to the transactions causing it.
 
-- Sales peak during Sep–Nov, indicating strong seasonal demand
-- Profit margins remain critically low (~5%) due to aggressive discounting
-- Higher discount levels reduce profit without increasing sales volume
-- Several high-sales products generate low profit, indicating pricing inefficiencies
-- Loss is concentrated in specific products and time periods.
+## Recommendations
 
-## 💡 Strategic Recommendations
+- Cap discounts at 10–15% on products where they're currently uncontrolled
+- Stop discounting high-demand, high-sales products entirely — they don't need the push
+- Reserve deeper discounts (15–30%) for genuinely low-performing products, where they can actually move volume
+- Raise prices 5–8% on products that sell well but carry thin margins
+- Re-price or retire products that are consistently loss-making regardless of discount
+- Introduce bundling on mid-performing products to lift average order value without relying on blanket discounts
+- Shift to a seasonal pricing model that matches the Sep–Nov demand spike instead of discounting through it
 
-- Limit discounts to a maximum of 10–15% to prevent profit erosion
-- Avoid discounts on high-demand, high-sales products to maximize profitability
-- Apply moderate discounts (5–10%) on medium-performing products to maintain sales balance
-- Offer higher discounts (15–30%) on low-performing products to boost demand
-- Introduce combo offers and bundling strategies to increase average order value
-- Increase pricing by 5–8% for high-sales low-margin products
-- Identify and remove or reprice consistently loss-making products
-- Implement seasonal pricing strategy based on demand patterns.
+## Why this matters for the business
 
-## 📊 Dashboard Features
+If applied, this pricing strategy could take the loss rate from ~33% down to under 15%, and lift overall margins from ~5% into the 10–15% range — without needing to change what's being sold, just how it's priced. It also gives the business a repeatable way to catch loss-making products early instead of finding out at quarter-end.
 
-- KPI tracking (Sales, Profit, Margin, Loss %)
-- Discount impact analysis
-- Top loss-making and high-profit products
-- Sales and profit trend analysis
-- Product-level performance insights
-- Interactive filters and drill-down capability.
+## Tools
 
-## 🛠️ Tools & Technologies
+Power BI · SQL · Python (Pandas, NumPy)
 
-- Power BI (Dashboard Development)
-- SQL (Data Extraction & Analysis)
-- Python (Data Cleaning & Feature Engineering)
-- Pandas, NumPy.
+## Repo structure
 
-## 📁 Project Structure
-
+```
 ├── data/
 ├── dashboard/
 ├── images/
 ├── notebooks/
 └── README.md
+```
 
-## 🎯 Business Impact
+## What I'd do differently
 
-- Reduced loss percentage potential from ~33% to <15%
-- Improved profit margin from ~5% to 10–15%
-- Enabled data-driven pricing and discount decisions
-- Identified key products contributing to losses.
+Given more time, I'd pull in cost-of-goods data to calculate true margin rather than approximating it from price and discount alone, and I'd want at least a full year of data to confirm the Sep–Nov pattern holds rather than being a one-off. This was a solid first pass at connecting discount behavior to profit, but a production version would need to survive that kind of scrutiny.
 
-## 🧠 Conclusion
-
-This project demonstrates how data-driven insights can transform business strategy by identifying inefficiencies and optimizing pricing decisions to improve profitability.
-
-## ⭐ If you found this project useful, consider giving it a star!
+---
+If this was useful or you spot something I should've done differently, I'd genuinely like to hear it — feel free to open an issue.
